@@ -28,4 +28,10 @@ class articlesList(
     fun delete(article: Article){
         val auxArr = articlesArray.filter { it.id == article.id}
     }
+
+    fun update(articles: Article) {
+        delete(articles)
+        articles.id = articlesArray[articlesArray.size-1].id++
+        push(articles)
+    }
 }

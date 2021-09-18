@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
 
 
 class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
 
-    lateinit var artImage: ImageView
-    lateinit var btnLike: ImageView
+    lateinit var artImage: AppCompatImageView
+    lateinit var btnLike: AppCompatImageView
     lateinit var txtLikesArt: TextView
-    lateinit var btnNext2: Button
-    lateinit var btnPrevious2: Button
+    private lateinit var btnNext2: AppCompatImageView
+    private lateinit var btnPrevious2: AppCompatImageView
     lateinit var artTitle: EditText
     lateinit var artContent: EditText
     lateinit var btnAction: Button
@@ -48,11 +49,11 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
             scndUser = requireArguments().getParcelable("user")!!
             btnAction.setOnClickListener {
                 if ( artTitle.text.isEmpty() || artContent.text.isEmpty() )
-                    Toast.makeText(context, "No deje campos vacios", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Campos vacios", Toast.LENGTH_LONG).show()
                 else {
                     var id = 0
-                    if ( scndList.arrArticles.size > 0 )
-                        id = scndList.arrArticles[scndList.arrArticles.size-1].id++
+                    if ( scndList.articlesArray.size > 0 )
+                        id = scndList.articlesArray[scndList.articlesArray.size-1].id++
                     val newArticle = Article(
                         id,
                         scndUser.id,
@@ -64,7 +65,7 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
                     println(newArticle.name)
                     saveShared()
                     requireActivity().supportFragmentManager.popBackStack()
-                    Toast.makeText(context, "creado correctamente correctamente", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Creado satisfactoriamente", Toast.LENGTH_LONG).show()
                 }
             }
             btnLike.isVisible = false
@@ -89,7 +90,7 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
 
             btnAction.setOnClickListener {
                 if ( artTitle.text.isEmpty() || artContent.text.isEmpty() )
-                    Toast.makeText(context, "No deje campos vacios", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Campo vacio", Toast.LENGTH_LONG).show()
                 else {
                     article.name = artTitle.text.toString()
                     article.content = artContent.text.toString()
@@ -106,9 +107,9 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
             scndUser = requireArguments().getParcelable("user")!!
             article = requireArguments().getParcelable("articulo")!!
             visibleLector()
-            txtLikesArt.text = article.favs.size.toString()
+            txtLikesArt.text = article.userFavs.size.toString()
 
-            val isFav = article.favs.filter { it.id == scndUser.id }
+            val isFav = article.userFavs.filter { it.id == scndUser.id }
 
             if ( isFav.size > 0 )
                 btnLike.setImageResource(R.drawable.like)
@@ -117,16 +118,16 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
 
             btnLike.setOnClickListener {
                 if ( isFav.size > 0 ) {
-                    val newLikes = article.favs.filter { it.id != scndUser.id }
-                    article.favs = newLikes.toTypedArray()
+                    val newLikes = article.userFavs.filter { it.id != scndUser.id }
+                    article.userFavs = newLikes.toTypedArray()
                     saveShared()
                     btnLike.setImageResource(R.drawable.liked)
-                    txtLikesArt.text = article.favs.size.toString()
+                    txtLikesArt.text = article.userFavs.size.toString()
                 } else {
-                    article.favs = arrayOf(*article.favs, scndUser)
+                    article.userFavs = arrayOf(*article.userFavs, scndUser)
                     saveShared()
                     btnLike.setImageResource(R.drawable.like)
-                    txtLikesArt.text = article.favs.size.toString()
+                    txtLikesArt.text = article.userFavs.size.toString()
                 }
             }
 
@@ -135,8 +136,7 @@ class FragmentArticulo : Fragment(R.layout.fragment_articulo) {
     }
 
     private fun saveShared() {
-        main.sharedPreferences.edit().putString(main.DOC_ARTICLES, main.moshi.adapter(lstArticles::class.java).toJson(scndList)).commit()
-    }
+        main.sharedPreferences.edit().putString(main.DOC_ARTICLES, main.moshi.adapter(articlesList::class.java).toJson(scndList)).commit()
     }
 
     private fun visibleLector() {
