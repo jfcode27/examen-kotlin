@@ -36,7 +36,7 @@
             app:layout_constraintVertical_bias="0.569" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imvCircular3"
+            android:id="@+id/userImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="16dp"
@@ -52,6 +52,7 @@
             android:id="@+id/txtNickname"
             android:layout_width="142dp"
             android:layout_height="25dp"
+            android:layout_marginEnd="72dp"
             android:fontFamily="@font/montserrat"
             android:text="Nickname"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -67,6 +68,7 @@
             android:id="@+id/txtUserType"
             android:layout_width="142dp"
             android:layout_height="25dp"
+            android:layout_marginEnd="72dp"
             android:fontFamily="@font/montserrat"
             android:text="User"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -77,10 +79,10 @@
             app:layout_constraintHorizontal_bias="0.291"
             app:layout_constraintStart_toEndOf="@+id/imvCircular3"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.077" />
+            app:layout_constraintVertical_bias="0.076" />
 
         <TextView
-            android:id="@+id/txt_ArtPubli"
+            android:id="@+id/txtArtCount"
             android:layout_width="142dp"
             android:layout_height="25dp"
             android:fontFamily="@font/montserrat"
@@ -91,12 +93,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.291"
-            app:layout_constraintStart_toEndOf="@+id/imvCircular3"
+            app:layout_constraintStart_toEndOf="@+id/userImage"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.143" />
 
         <ImageView
-            android:id="@+id/ivEscArt"
+            android:id="@+id/imgArt"
             android:layout_width="380dp"
             android:layout_height="249dp"
             android:src="@drawable/art21"
@@ -115,12 +117,13 @@
             app:layout_constraintHorizontal_bias="0.219"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnPrevious"
-            app:layout_constraintVertical_bias="0.867" />
+            app:layout_constraintVertical_bias="0.603" />
 
         <Button
             android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
             android:text="Editar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
@@ -136,16 +139,17 @@
             android:text="Eliminar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.947"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnNext"
-            app:layout_constraintVertical_bias="0.867" />
+            app:layout_constraintVertical_bias="0.555" />
 
         <ImageView
             android:id="@+id/btnNext"
             android:layout_width="55dp"
             android:layout_height="51dp"
             android:layout_marginTop="21dp"
+            android:layout_marginBottom="156dp"
             android:src="@drawable/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +168,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.137"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivEscArt"
+            app:layout_constraintTop_toBottomOf="@+id/imgArt"
             app:layout_constraintVertical_bias="0.005" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Título"
+            android:textColor="#0E0E0E"
+            app:layout_constraintBottom_toTopOf="@+id/imgArt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtArtCount" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,10 +1,14 @@
 package com.example.examen_kotlin
 
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,9 +21,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FragmentLogin : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var imvCircular : ImageView
+    lateinit var etUser : EditText
+    lateinit var etPassword : EditText
+    lateinit var button : Button
+
+
+
 
 
     val users = arrayOf(
@@ -30,6 +39,10 @@ class FragmentLogin : Fragment() {
         User(nickname = "Jackie Harrison", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.lector2),
         User(nickname = "Bobby Little", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.lector3)
     )
+
+    override fun onResume() {
+        super.onResume()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,23 +60,26 @@ class FragmentLogin : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentLogin.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentLogin().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun evts() {
+        etUser.addTextChangedListener(wtch)
+        button.setOnClickListener {
+            users.forEach {
+                if ( it.password == etPassword.text.toString() )
+                    childFragmentManager.beginTransaction().replace(R.id.render, escritor().apply {
+                        arguments = Bundle().apply {
+                            putParcelable("loginUser", it)
+                        }
+                    }).commit()
             }
+        }
+    }
+
+
+
+    private fun views() {
+        imvCircular = requireView().findViewById(R.id.imvCircular)
+        etUser = requireView().findViewById(R.id.etUser)
+        etPassword = requireView().findViewById(R.id.etPassword)
+       button = requireView().findViewById(R.id.button)
     }
 }
