@@ -5,7 +5,7 @@
     android:background="#E9F0FB"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".escritor">
+    tools:context=".FragmentEscritor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -113,24 +113,9 @@
             android:layout_height="wrap_content"
             android:text="Crear"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditar"
-            app:layout_constraintHorizontal_bias="0.219"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnPrevious"
             app:layout_constraintVertical_bias="0.603" />
-
-        <Button
-            android:id="@+id/btnEditar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:text="Editar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
-            app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivEscArt"
-            app:layout_constraintVertical_bias="0.917" />
 
         <Button
             android:id="@+id/btnEliminar"
@@ -182,5 +167,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtArtCount" />
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="5dp"
+            android:text="Editar"
+            app:layout_constraintBottom_toTopOf="@+id/btnShow2"
+            app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
+            app:layout_constraintStart_toEndOf="@+id/btnShow"
+            app:layout_constraintTop_toBottomOf="@+id/btnLecLike2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

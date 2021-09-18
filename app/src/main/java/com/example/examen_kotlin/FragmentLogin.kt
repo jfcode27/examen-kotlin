@@ -1,7 +1,8 @@
 package com.example.examen_kotlin
 
-import android.media.Image
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentLogin.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentLogin : Fragment() {
 
     lateinit var imvCircular : ImageView
@@ -27,30 +18,50 @@ class FragmentLogin : Fragment() {
     lateinit var etPassword : EditText
     lateinit var button : Button
 
-
-
-
-
     val users = arrayOf(
-        User(nickname = "Nathaniel Rice", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.escritor),
-        User(nickname = "Nathaniel Rice", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.escritor2),
-        User(nickname = "Jon Mendoza", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.escritor3),
-        User(nickname = "Erik Welch", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.lector),
-        User(nickname = "Jackie Harrison", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.lector2),
-        User(nickname = "Bobby Little", TypeUser.WRITTER, password = "thisIsNoPassword", R.drawable.lector3)
+        User(0, nickname = "Nathaniel Rice", TypeUser.WRITTER, password = "123", R.drawable.escritor),
+        User(1, nickname = "Harold Matus", TypeUser.WRITTER, password = "1234", R.drawable.escritor2),
+        User(2, nickname = "Jon Mendoza", TypeUser.WRITTER, password = "12345", R.drawable.escritor3),
+        User(3, nickname = "Erik Welch", TypeUser.READER, password = "123456", R.drawable.lector),
+        User(4, nickname = "Jackie Harrison", TypeUser.READER, password = "321", R.drawable.lector2),
+        User(5, nickname = "Bobby Little", TypeUser.READER, password = "3210", R.drawable.lector3)
     )
 
     override fun onResume() {
         super.onResume()
+
+        views()
+        evts()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val wtch = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
         }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            var user: User? = null
+            users.forEach {
+                if ( it.nickname == p0.toString() ) {
+                    user = it
+                }
+            }
+            if ( user != null ) {
+                button.isEnabled = true
+                etPassword.isEnabled = true
+                imvCircular.setImageResource(user!!.userImage)
+            } else {
+                button.isEnabled = false
+                etPassword.isEnabled = false
+                imvCircular.setImageResource(R.drawable.ic_launcher_foreground)
+            }
+        }
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,12 +71,12 @@ class FragmentLogin : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-    override fun evts() {
+    private fun evts() {
         etUser.addTextChangedListener(wtch)
         button.setOnClickListener {
             users.forEach {
                 if ( it.password == etPassword.text.toString() )
-                    childFragmentManager.beginTransaction().replace(R.id.render, escritor().apply {
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.render, FragmentEscritor().apply {
                         arguments = Bundle().apply {
                             putParcelable("loginUser", it)
                         }

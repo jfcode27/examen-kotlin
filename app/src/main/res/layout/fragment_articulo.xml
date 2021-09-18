@@ -5,7 +5,7 @@
     android:background="#E9F0FB"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".articulo">
+    tools:context=".FragmentArticulo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,11 +64,45 @@
             tools:layout_editor_absoluteY="44dp" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/artImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/art31"
             tools:layout_editor_absoluteX="75dp"
             tools:layout_editor_absoluteY="128dp" />
+
+        <EditText
+            android:id="@+id/artContent"
+            android:layout_width="310dp"
+            android:layout_height="164dp"
+            android:hint="Content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/artTitle"
+            app:layout_constraintVertical_bias="0.299" />
+
+        <EditText
+            android:id="@+id/artTitle"
+            android:layout_width="318dp"
+            android:layout_height="42dp"
+            android:hint="Title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/artImage"
+            app:layout_constraintVertical_bias="0.299" />
+
+        <Button
+            android:id="@+id/btnAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="667dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
