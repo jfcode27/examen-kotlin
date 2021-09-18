@@ -8,77 +8,7 @@
     tools:context=".MainActivity"
     >
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imvCircular"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/lector"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/Circular" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfUser"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Usuario"
-        app:startIconTint="#000"
-        app:startIconDrawable="@drawable/ic_user"
-        app:boxBackgroundColor="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imvCircular"
-        android:textColorHint="#000"
-        app:layout_constraintVertical_bias="0.127">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfPassword"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Contraseña"
-        android:textColorHint="#000"
-        app:boxBackgroundColor="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfUser"
-        app:layout_constraintVertical_bias="0.078"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:startIconTint="#000">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="147dp"
-        android:layout_height="57dp"
-        android:background="#3E4685"
-        android:backgroundTint="#3E4685"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfPassword"
-        app:layout_constraintVertical_bias="0.355" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
